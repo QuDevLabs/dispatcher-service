@@ -1,0 +1,21 @@
+server:
+  port: 9003
+spring:
+  cloud:
+    function:
+      definition: pack|label
+    stream:
+      bindings:
+        packlabel-in-0:
+          destination: order-accepted # 在代理中，绑定器实际绑定的名称（RabbitMQ中的交换机）
+          group: ${spring.application.name} # 对目的地感兴趣的消费者组，与应用的名称相同
+        packlabel-out-0:
+          destination: order-dispatched # 在代理中，绑定器实际绑定的名称（RabbitMQ中的交换机）
+  application:
+    name: dispatcher-service
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: password
+    connection-timeout: 5s
