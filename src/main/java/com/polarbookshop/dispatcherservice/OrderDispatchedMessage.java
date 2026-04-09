@@ -1,5 +1,5 @@
 package com.polarbookshop.dispatcherservice;
 
-public record OrderDispatcherdMessage(
+public record OrderDispatchedMessage(
         Long orderId) {
 }

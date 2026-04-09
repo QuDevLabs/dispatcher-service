@@ -31,9 +31,9 @@ public class FunctionsStreamIntegrationTests {
     void whenOrderAcceptedThenDispatched() throws IOException {
         long orderId = 121;
         Message<OrderAcceptedMessage> inputMessage = MessageBuilder.withPayload(new OrderAcceptedMessage(orderId)).build();
-        Message<OrderDispatcherdMessage> expectedOutputMesage = MessageBuilder.withPayload(new OrderDispatcherdMessage(orderId)).build();
+        Message<OrderDispatchedMessage> expectedOutputMesage = MessageBuilder.withPayload(new OrderDispatchedMessage(orderId)).build();
         this.input.send(inputMessage);
-        Assertions.assertThat(objectMapper.readValue(output.receive().getPayload(), OrderDispatcherdMessage.class))
+        Assertions.assertThat(objectMapper.readValue(output.receive().getPayload(), OrderDispatchedMessage.class))
                 .isEqualTo(expectedOutputMesage.getPayload());
     }
 }
